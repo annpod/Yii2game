@@ -1,0 +1,11 @@
+{
+    "name": "project/game",
+	"description": "Project",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0"
+    },
+	"autoload": {
+        "psr-4": {"Annpod\\Yii2game\\": "src/"}
+    }
+}
