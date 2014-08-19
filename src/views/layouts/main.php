@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'SMART Ann Podoynitsyna',
+                'brandLabel' => 'SMART ' . Yii::$app->user->identity->username,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,10 +36,40 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'About', 'url' => ['/site/about']],
-                    ['label' => 'Contact', 'url' => ['/site/contact']],
-                    ['label' => 'Experiments', 'url' => ['/experiment']],
-                    ['label' => 'Results', 'url' => ['/results']],
+                    
+                    
+                  //  ['label' => 'About', 'url' => ['/site/about']],
+                    
+                     Yii::$app->user->isGuest ?
+                        ['label' => 'About', 'url' => ['/site/login']] :
+                        ['label' => 'About (' . Yii::$app->user->identity->username . ')',
+                            'url' => ['/results'],
+                            'linkOptions' => ['data-method' => 'post']],
+                    
+                    
+                   // ['label' => 'Contact', 'url' => ['/site/contact']],
+                     Yii::$app->user->isGuest ?
+                        ['label' => 'Contact', 'url' => ['/site/login']] :
+                        ['label' => 'Contact (' . Yii::$app->user->identity->username . ')',
+                            'url' => ['//site/contact'],
+                            'linkOptions' => ['data-method' => 'post']],
+                    
+                    
+                   // ['label' => 'Experiments', 'url' => ['/experiment']],
+                     Yii::$app->user->isGuest ?
+                        ['label' => 'Experiments', 'url' => ['/site/login']] :
+                        ['label' => 'Experiments (' . Yii::$app->user->identity->username . ')',
+                            'url' => ['/experiment'],
+                            'linkOptions' => ['data-method' => 'post']],
+                    
+                  //  ['label' => 'Results', 'url' => ['/site/login']],
+                    
+                    Yii::$app->user->isGuest ?
+                        ['label' => 'Results', 'url' => ['/site/login']] :
+                        ['label' => 'Results (' . Yii::$app->user->identity->username . ')',
+                            'url' => ['/results'],
+                            'linkOptions' => ['data-method' => 'post']],
+                   
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
